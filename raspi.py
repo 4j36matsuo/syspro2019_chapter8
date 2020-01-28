@@ -27,16 +27,16 @@ db = firestore.Client()
 
 # コールバック関数を作成する
 def on_snapshot(doc_snapshot, changes, read_time):
-    for change in changes:
-        print(u'New cmd: {}'.format(change.document.id))
-        led = change.document.to_dict()["led"]
-        print(u'LED: {}'.format(led))
-        if led == "ON":
-            print "ON"
-            # ONにする処理
-        elif led == "OFF":
-            print "OFF"
-            # OFFにする処理
+	for change in changes:
+		print(u'New cmd: {}'.format(change.document.id))
+		led = change.document.to_dict()["led"]
+		print(u'LED: {}'.format(led))
+		if led == "ON":
+			print "ON"
+			GPIO.output(14, GPIO.HIGH)
+		elif led == "OFF":
+			print "OFF"
+			GPIO.output(14, GPIO.LOW)
 
 
 on_ref = db.collection('led').where(u'led', u'==', u'ON')
@@ -50,19 +50,19 @@ doc_watch = off_ref.on_snapshot(on_snapshot)
 # 「'''」で囲まれた部分はコメントアウトされているので，参考にすること．
 '''
 while True:
-    #温度，湿度，気圧の値を取得する
-    #temp = 
-    #hum = 
-    #press = 
+	#温度，湿度，気圧の値を取得する
+	#temp = 
+	#hum = 
+	#press = 
 
-    print("Temperature:%6.2f" %(temp))
-    print("Humidity:%6.2f" %(hum))
-    print("Pressure:%6.2f" %(press))
-    data = {"temp": temp, "hum": hum, "press":press}
-    db.collection('temperature').document(str(datetime.datetime.now())).set(data)
-    time.sleep(1)
+	print("Temperature:%6.2f" %(temp))
+	print("Humidity:%6.2f" %(hum))
+	print("Pressure:%6.2f" %(press))
+	data = {"temp": temp, "hum": hum, "press":press}
+	db.collection('temperature').document(str(datetime.datetime.now())).set(data)
+	time.sleep(1)
 '''
 
 # 温度センサと接続できないうちはこの無限ループを使う
 while True:
-    pass
+	pass
