@@ -26,19 +26,19 @@ GPIO.output(14, GPIO.LOW)
 db = firestore.Client()
 
 # コールバック関数を作成する
-#def on_snapshot(doc_snapshot, changes, read_time):
-#	for change in changes:
-#		print(u'New cmd: {}'.format(change.document.id))
-#		led = change.document.to_dict()["led"]
-#		print(u'LED: {}'.format(led))
-#		if led == "ON":
-#			print "ON"
-#			GPIO.output(14, GPIO.HIGH)
-#			time.sleep(1)
-#		elif led == "OFF":
-#			print "OFF"
-#			GPIO.output(14, GPIO.LOW)
-#			time.sleep(1)
+def on_snapshot(doc_snapshot, changes, read_time):
+	for change in changes:
+		print(u'New cmd: {}'.format(change.document.id))
+		led = change.document.to_dict()["led"]
+		print(u'LED: {}'.format(led))
+		if led == "ON":
+			print "ON"
+			GPIO.output(14, GPIO.HIGH)
+			time.sleep(1)
+		elif led == "OFF":
+			print "OFF"
+			GPIO.output(14, GPIO.LOW)
+			time.sleep(1)
 
 
 on_ref = db.collection('led').where(u'led', u'==', u'ON')
