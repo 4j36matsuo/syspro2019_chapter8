@@ -27,27 +27,27 @@ db = firestore.Client()
 
 # コールバック関数を作成する
 def on_snapshot(doc_snapshot, changes, read_time):
-	for change in changes:
-		print(u'New cmd: {}'.format(change.document.id))
-		led = change.document.to_dict()["led"]
-		print(u'LED: {}'.format(led))
-		if led == "ON":
-			print "ON"
-			GPIO.output(14, GPIO.HIGH)
-			time.sleep(1)
-		elif led == "OFF":
-			print "OFF"
-			GPIO.output(14, GPIO.LOW)
-			time.sleep(1)
+//	for change in changes:
+//		print(u'New cmd: {}'.format(change.document.id))
+//		led = change.document.to_dict()["led"]
+//		print(u'LED: {}'.format(led))
+//		if led == "ON":
+//			print "ON"
+//			GPIO.output(14, GPIO.HIGH)
+//			time.sleep(1)
+//		elif led == "OFF":
+//			print "OFF"
+//			GPIO.output(14, GPIO.LOW)
+//			time.sleep(1)
 
 
 on_ref = db.collection('led').where(u'led', u'==', u'ON')
 off_ref = db.collection('led').where(u'led', u'==', u'OFF')
 
 # 監視を開始する
-doc_watch = on_ref.on_snapshot(on_snapshot)
-doc_watch = off_ref.on_snapshot(on_snapshot)
-print("adj")
+//doc_watch = on_ref.on_snapshot(on_snapshot)
+//doc_watch = off_ref.on_snapshot(on_snapshot)
+
 # 温度湿度気圧センサから値を取得してFirestoreに送信する部分
 # 「'''」で囲まれた部分はコメントアウトされているので，参考にすること．
 '''
