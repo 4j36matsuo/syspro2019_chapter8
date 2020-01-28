@@ -12,7 +12,7 @@ import os
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/home/pi/chapter8-s16175-firebase-adminsdk-zy6la-b9df3426b0.json"
 
-cred = credentials.Certificate('/home/pi/syspro-chapter8.json')
+cred = credentials.Certificate('/home/pi/chapter8-s16175-firebase-adminsdk-zy6la-b9df3426b0.json')
 firebase_admin.initialize_app(cred)
 i2c = smbus.SMBus(1)
 address = 0x48
