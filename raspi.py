@@ -43,11 +43,11 @@ def on_snapshot(doc_snapshot, changes, read_time):
 
 on_ref = db.collection('led').where(u'led', u'==', u'ON')
 off_ref = db.collection('led').where(u'led', u'==', u'OFF')
-print("ref")
+
 # 監視を開始する
 doc_watch = on_ref.on_snapshot(on_snapshot)
 doc_watch = off_ref.on_snapshot(on_snapshot)
-
+print("adj")
 # 温度湿度気圧センサから値を取得してFirestoreに送信する部分
 # 「'''」で囲まれた部分はコメントアウトされているので，参考にすること．
 '''
