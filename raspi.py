@@ -34,9 +34,11 @@ def on_snapshot(doc_snapshot, changes, read_time):
 		if led == "ON":
 			print "ON"
 			GPIO.output(14, GPIO.HIGH)
+			time.sleep(1)
 		elif led == "OFF":
 			print "OFF"
 			GPIO.output(14, GPIO.LOW)
+			time.sleep(1)
 
 
 on_ref = db.collection('led').where(u'led', u'==', u'ON')
